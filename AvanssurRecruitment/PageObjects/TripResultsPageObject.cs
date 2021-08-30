@@ -1,7 +1,8 @@
 ﻿using AvanssurRecruitment.Data;
-using AvanssurRecruitment.Extensions;
+using AvanssurRecruitment.Infrastructure;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AvanssurRecruitment.PageObjects
 {
@@ -20,17 +21,10 @@ namespace AvanssurRecruitment.PageObjects
         private By FirstTripSelector => By.Id("section-directions-trip-0");
         private By SectionSelector => By.Id("pane");
 
-        public List<TripResult> GatherTrips()
-        {
-            var result = new List<TripResult>();
-            var trips = sectionContainer.FindElements(TripNumbersSelector);
-
-            foreach(var trip in trips)
-                result.Add(new TripResult(
-                    trip.FindElement(TripTimeSelector).Text.ToMinutes(),
-                    trip.FindElement(TripDistanceSelector).Text.ToMeters()));
-
-            return result;
-        }
+        public List<TripResult> GetTripResults() => sectionContainer.FindElements(TripNumbersSelector)
+            .Select(trip => new TripResult(
+                time: trip.FindElement(TripTimeSelector).Text.ToMinutes(),
+                distance: trip.FindElement(TripDistanceSelector).Text.ToMeters()))
+            .ToList();
     }
 }

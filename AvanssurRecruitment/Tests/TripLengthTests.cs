@@ -10,7 +10,7 @@ namespace AvanssurRecruitment.Tests
     {
         public TripLengthTests(FrontendFixture fixture)
         {
-            entryPoint = fixture.BeforeTests();
+            entryPoint = fixture.AcceptTermsIfNecessary();
         }
 
         private readonly SearchMapsPageObject entryPoint;
@@ -30,7 +30,7 @@ namespace AvanssurRecruitment.Tests
                 .ChooseTravelMode(travelMode);
               var tripResults = searchPageObject
                 .GoToTripResults()
-                .GatherTrips();
+                .GetTripResults();
 
             searchPageObject.CloseDirectionsPage();
 

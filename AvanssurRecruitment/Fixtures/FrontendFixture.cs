@@ -1,9 +1,7 @@
-﻿using AvanssurRecruitment.PageObjects;
+﻿using AvanssurRecruitment.Infrastructure;
+using AvanssurRecruitment.PageObjects;
 using AvanssurRecruitment.Services;
-using Microsoft.Edge.SeleniumTools;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Configuration;
 using Xunit;
 
 namespace AvanssurRecruitment.Fixtures
@@ -14,31 +12,22 @@ namespace AvanssurRecruitment.Fixtures
         public const string CollectionName = "Maps Tests Collection";
         public IWebDriver driver;
         public Navigator navigator;
-        public bool isTermsAccepted = false;
+        public bool areTermsAccepted = false;
 
         public FrontendFixture()
         {
-            if(ConfigurationManager.AppSettings.Get("driver") == "chrome")
-                driver = new ChromeDriver();
-            else
-            {
-                var options = new EdgeOptions
-                {
-                    UseChromium = true
-                };
-                driver = new EdgeDriver(options);
-            }
-
+            driver = DriverFactory.CreateWebDriver();
             navigator = new Navigator(driver);
             driver.Manage().Window.Maximize();
         }
 
-        public SearchMapsPageObject BeforeTests()
+        public SearchMapsPageObject AcceptTermsIfNecessary()
         {
-            if (!isTermsAccepted)
+            if (!areTermsAccepted)
             {
-                navigator.NavigateToMaps().ClickAgreeButton();
-                isTermsAccepted = true;
+                navigator.NavigateToMaps()
+                    .ClickAgreeButton();
+                areTermsAccepted = true;
             }
 
             return new SearchMapsPageObject(driver);

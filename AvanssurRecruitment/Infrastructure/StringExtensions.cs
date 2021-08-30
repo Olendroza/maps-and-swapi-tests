@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace AvanssurRecruitment.Extensions
+namespace AvanssurRecruitment.Infrastructure
 {
     public static class StringExtensions
     {
@@ -18,6 +18,5 @@ namespace AvanssurRecruitment.Extensions
         public static int ToMinutes(this string time) => int.Parse(time.Replace("min", "").Trim());
 
         public static int GetId(this string url) => int.Parse(url.Remove(url.Length - 1).Split('/').Last());
-
     }
 }

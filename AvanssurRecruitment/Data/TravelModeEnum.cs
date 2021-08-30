@@ -1,5 +1,5 @@
 ﻿public enum TravelMode
 {
-    Walk = 2,
-    Bike = 1
+    Bike = 1,
+    Walk
 }

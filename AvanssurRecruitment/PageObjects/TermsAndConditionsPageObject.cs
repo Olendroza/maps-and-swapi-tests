@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AvanssurRecruitment.Infrastructure;
+using OpenQA.Selenium;
 using System.Linq;
 
 namespace AvanssurRecruitment.PageObjects
@@ -11,8 +12,9 @@ namespace AvanssurRecruitment.PageObjects
 
         public SearchMapsPageObject ClickAgreeButton()
         {
-            if(WebDriver.GetType().Name == "ChromeDriver")
+            if(WebDriver.IsChrome())
                     WebDriver.FindElements(ButtonSelector).
+                    // Assumption - in the task there was a requirement to query maps.google.pl
                     Single(button => button.Text == "Zgadzam się")
                     .Click();
             else

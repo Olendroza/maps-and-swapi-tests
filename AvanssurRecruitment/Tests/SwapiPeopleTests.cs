@@ -1,5 +1,5 @@
-﻿using AvanssurRecruitment.Extensions;
-using AvanssurRecruitment.Fixtures;
+﻿using AvanssurRecruitment.Fixtures;
+using AvanssurRecruitment.Infrastructure;
 using FluentAssertions;
 using StarWarsApiCSharp;
 using Xunit;
@@ -20,7 +20,7 @@ namespace AvanssurRecruitment.Tests
         }
 
         [Fact(DisplayName = "Luke Skywalker is from Tatooine test.")]
-        public void Database_QueryPeopleForFirstEntry_HomeworldCorrect()
+        public void WorkingAPI_QueryPeopleForFirstEntry_HomeworldCorrect()
         {
             var homeworld = peopleRepository
                .GetById(1)
