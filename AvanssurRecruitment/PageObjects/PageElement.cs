@@ -19,7 +19,12 @@ namespace AvanssurRecruitment.PageObjects
             };
         }
 
+        protected static By GuidedHelpIdSelector(string selector) => By.CssSelector($"[guidedhelpid='{selector}']");
+
         protected By InputSelector => By.TagName("input");
+        protected By DivSelector => By.TagName("div");
+        protected By ButtonSelector => By.TagName("button");
+
 
         protected IWebElement WaitForVisibleElement(By by) =>
                 WaitForElement.Until(ExpectedConditions.ElementIsVisible(by));

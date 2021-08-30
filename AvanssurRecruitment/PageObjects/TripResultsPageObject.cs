@@ -24,6 +24,7 @@ namespace AvanssurRecruitment.PageObjects
         {
             var result = new List<TripResult>();
             var trips = sectionContainer.FindElements(TripNumbersSelector);
+
             foreach(var trip in trips)
             {
                 result.Add(new TripResult(

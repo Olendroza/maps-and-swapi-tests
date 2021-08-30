@@ -10,6 +10,7 @@ namespace AvanssurRecruitment.PageObjects
         }
         private By DirectionsFrom => By.Id("directions-searchbox-0");
         private By TravelModeWidget => By.ClassName("widget-directions-travel-mode-switcher-container");
+        private By DirectionsXButton => GuidedHelpIdSelector("close_directions");
 
         public DirectionsPageObject FillDirectionsFrom(string input)
         {
@@ -28,13 +29,20 @@ namespace AvanssurRecruitment.PageObjects
             var modeToString = ((int)mode).ToString();
             var travelModeContainers = WebDriver
                 .FindElement(TravelModeWidget)
-                .FindElements(By.TagName("div"));
+                .FindElements(DivSelector);
 
             travelModeContainers
                 .Single(element => element.GetAttribute("data-travel_mode") == modeToString)
                 .Click();
 
             return this;
+        }
+
+        public SearchMapsPageObject CloseDirectionsPage()
+        {
+            WebDriver.FindElement(DirectionsXButton).Click();
+
+            return new SearchMapsPageObject(WebDriver);
         }
 
         public TripResultsPageObject GoToTripResults() => new TripResultsPageObject(WebDriver);
