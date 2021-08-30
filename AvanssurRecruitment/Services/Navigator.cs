@@ -15,7 +15,7 @@ namespace AvanssurRecruitment.Services
 
         public TermsAndConditionsPageObject NavigateToMaps()
         {
-            driver.Navigate().GoToUrl("https://www.google.pl/maps/");
+            driver.Navigate().GoToUrl(googleMapsUrl);
 
             return new TermsAndConditionsPageObject(driver);
         }

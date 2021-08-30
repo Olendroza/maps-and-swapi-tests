@@ -15,7 +15,7 @@ namespace AvanssurRecruitment.Tests
 
         private readonly SearchMapsPageObject entryPoint;
 
-        [Theory]
+        [Theory(DisplayName = "Distance and Time of travel is shorter than test.")]
         [InlineData("Ch³odna 51, Warszawa", "plac Defilad 1, Warszawa", TravelMode.Walk, 3000, 40)]
         [InlineData("Ch³odna 51, Warszawa", "plac Defilad 1, Warszawa", TravelMode.Bike, 3000, 15)]
         [InlineData("plac Defilad 1, Warszawa", "Ch³odna 51, Warszawa",TravelMode.Walk, 3000, 40)]
@@ -37,6 +37,5 @@ namespace AvanssurRecruitment.Tests
             tripResults.Should().OnlyContain(trip => trip.Distance < expectedDistance)
                 .And.OnlyContain(trip => trip.Time < expectedTime);
         }
-
     }
 }

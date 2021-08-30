@@ -11,9 +11,14 @@ namespace AvanssurRecruitment.PageObjects
 
         public SearchMapsPageObject ClickAgreeButton()
         {
-            WebDriver.FindElements(ButtonSelector).
-                Single(button => button.Text == "Zgadzam się")
-                .Click();
+            if(WebDriver.GetType().Name == "ChromeDriver")
+                    WebDriver.FindElements(ButtonSelector).
+                    Single(button => button.Text == "Zgadzam się")
+                    .Click();
+            else
+                WebDriver.FindElements(InputSelector).
+                    Single(input => input.GetAttribute("value") == "Zgadzam się")
+                    .Click();
 
             return new SearchMapsPageObject(WebDriver);
         }

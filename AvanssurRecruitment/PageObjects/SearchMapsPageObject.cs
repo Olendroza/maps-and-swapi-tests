@@ -31,7 +31,5 @@ namespace AvanssurRecruitment.PageObjects
 
             return new DirectionsPageObject(WebDriver);
         }
-
-
     }
 }

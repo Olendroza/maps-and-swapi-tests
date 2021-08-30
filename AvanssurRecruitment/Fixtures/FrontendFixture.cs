@@ -1,7 +1,9 @@
 ﻿using AvanssurRecruitment.PageObjects;
 using AvanssurRecruitment.Services;
+using Microsoft.Edge.SeleniumTools;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Configuration;
 using Xunit;
 
 namespace AvanssurRecruitment.Fixtures
@@ -14,10 +16,19 @@ namespace AvanssurRecruitment.Fixtures
         public Navigator navigator;
         public bool isTermsAccepted = false;
 
-
         public FrontendFixture()
         {
-            driver = new ChromeDriver();
+            if(ConfigurationManager.AppSettings.Get("driver") == "chrome")
+                driver = new ChromeDriver();
+            else
+            {
+                var options = new EdgeOptions
+                {
+                    UseChromium = true
+                };
+                driver = new EdgeDriver(options);
+            }
+
             navigator = new Navigator(driver);
             driver.Manage().Window.Maximize();
         }
@@ -32,6 +43,5 @@ namespace AvanssurRecruitment.Fixtures
 
             return new SearchMapsPageObject(driver);
         }
-
     }
 }

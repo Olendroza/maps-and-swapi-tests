@@ -26,11 +26,9 @@ namespace AvanssurRecruitment.PageObjects
             var trips = sectionContainer.FindElements(TripNumbersSelector);
 
             foreach(var trip in trips)
-            {
                 result.Add(new TripResult(
                     trip.FindElement(TripTimeSelector).Text.ToMinutes(),
                     trip.FindElement(TripDistanceSelector).Text.ToMeters()));
-            }
 
             return result;
         }

@@ -12,7 +12,6 @@ namespace AvanssurRecruitment.Tests
         public readonly Repository<Person> peopleRepository;
         public readonly Repository<Planet> planetRepository;
 
-
         public SwapiPeopleTests(BackendFixture fixture)
         {
             peopleRepository = fixture.peopleRepository;
@@ -20,15 +19,15 @@ namespace AvanssurRecruitment.Tests
 
         }
 
-        [Fact]
+        [Fact(DisplayName = "Luke Skywalker is from Tatooine test.")]
         public void Database_QueryPeopleForFirstEntry_HomeworldCorrect()
         {
-            var homeworId = peopleRepository
+            var homeworld = peopleRepository
                .GetById(1)
                .Homeworld
                .GetId();
 
-            var planetName = planetRepository.GetById(homeworId).Name;
+            var planetName = planetRepository.GetById(homeworld).Name;
             planetName.Should().Be("Tatooine");
         }
     }
