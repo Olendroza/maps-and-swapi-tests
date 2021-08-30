@@ -15,9 +15,9 @@ namespace AvanssurRecruitment.Extensions
             return int.Parse(distance.Replace("m", "").Trim());
        }
 
-        public static int ToMinutes(this string time)
-        {
-            return int.Parse(time.Replace("min", "").Trim());
-        }
+        public static int ToMinutes(this string time) => int.Parse(time.Replace("min", "").Trim());
+
+        public static int GetId(this string url) => int.Parse(url.Remove(url.Length - 1).Split('/').Last());
+
     }
 }

@@ -7,7 +7,7 @@ using Xunit;
 namespace AvanssurRecruitment.Fixtures
 {
     [CollectionDefinition(CollectionName)]
-    public class FrontEndTestsFixture : ICollectionFixture<FrontEndTestsFixture>
+    public class FrontendFixture : ICollectionFixture<FrontendFixture>
     {
         public const string CollectionName = "Maps Tests Collection";
         public IWebDriver driver;
@@ -15,14 +15,14 @@ namespace AvanssurRecruitment.Fixtures
         public bool isTermsAccepted = false;
 
 
-        public FrontEndTestsFixture()
+        public FrontendFixture()
         {
             driver = new ChromeDriver();
             navigator = new Navigator(driver);
             driver.Manage().Window.Maximize();
         }
 
-        public SearchMapsPageObject BeforeFrontEndTestsTests()
+        public SearchMapsPageObject BeforeTests()
         {
             if (!isTermsAccepted)
             {

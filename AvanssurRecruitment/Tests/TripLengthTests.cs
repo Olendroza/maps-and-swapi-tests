@@ -5,12 +5,12 @@ using Xunit;
 
 namespace AvanssurRecruitment.Tests
 {
-    [Collection(FrontEndTestsFixture.CollectionName)]
+    [Collection(FrontendFixture.CollectionName)]
     public class TripLengthTests
     {
-        public TripLengthTests(FrontEndTestsFixture fixture)
+        public TripLengthTests(FrontendFixture fixture)
         {
-            entryPoint = fixture.BeforeFrontEndTestsTests();
+            entryPoint = fixture.BeforeTests();
         }
 
         private readonly SearchMapsPageObject entryPoint;
@@ -37,5 +37,6 @@ namespace AvanssurRecruitment.Tests
             tripResults.Should().OnlyContain(trip => trip.Distance < expectedDistance)
                 .And.OnlyContain(trip => trip.Time < expectedTime);
         }
+
     }
 }
