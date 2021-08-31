@@ -6,9 +6,9 @@ using Xunit;
 namespace AvanssurRecruitment.Tests
 {
     [Collection(FrontendFixture.CollectionName)]
-    public class TripLengthTests
+    public class RouteLengthTests
     {
-        public TripLengthTests(FrontendFixture fixture)
+        public RouteLengthTests(FrontendFixture fixture)
         {
             entryPoint = fixture.AcceptTermsIfNecessary();
         }
@@ -28,14 +28,14 @@ namespace AvanssurRecruitment.Tests
                 .ClickDirectionsButton()
                 .FillDirectionsFrom(directionsTo)
                 .ChooseTravelMode(travelMode);
-              var tripResults = searchPageObject
+              var RouteResults = searchPageObject
                 .GoToTripResults()
                 .GetTripResults();
 
             searchPageObject.CloseDirectionsPage();
 
-            tripResults.Should().OnlyContain(trip => trip.Distance < expectedDistance)
-                .And.OnlyContain(trip => trip.Time < expectedTime);
+            RouteResults.Should().OnlyContain(route => route.Distance < expectedDistance)
+                .And.OnlyContain(route => route.Time < expectedTime);
         }
     }
 }

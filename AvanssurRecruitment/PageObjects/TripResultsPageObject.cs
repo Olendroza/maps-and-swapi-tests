@@ -10,21 +10,21 @@ namespace AvanssurRecruitment.PageObjects
     {
         public TripResultsPageObject(IWebDriver webDriver) : base(webDriver)
         {
-            WaitForVisibleElement(FirstTripSelector);
+            WaitForVisibleElement(FirstRouteSelector);
             sectionContainer = webDriver.FindElement(SectionSelector);
         }
 
         private readonly IWebElement sectionContainer;
-        private By TripNumbersSelector => By.ClassName("section-directions-trip-numbers");
-        private By TripTimeSelector => By.ClassName("section-directions-trip-duration");
-        private By TripDistanceSelector => By.ClassName("section-directions-trip-distance");
-        private By FirstTripSelector => By.Id("section-directions-trip-0");
+        private By RouteNumbersSelector => By.ClassName("section-directions-trip-numbers");
+        private By RouteTimeSelector => By.ClassName("section-directions-trip-duration");
+        private By RouteDistanceSelector => By.ClassName("section-directions-trip-distance");
+        private By FirstRouteSelector => By.Id("section-directions-trip-0");
         private By SectionSelector => By.Id("pane");
 
-        public List<TripResult> GetTripResults() => sectionContainer.FindElements(TripNumbersSelector)
-            .Select(trip => new TripResult(
-                time: trip.FindElement(TripTimeSelector).Text.ToMinutes(),
-                distance: trip.FindElement(TripDistanceSelector).Text.ToMeters()))
+        public List<RouteResult> GetTripResults() => sectionContainer.FindElements(RouteNumbersSelector)
+            .Select(route => new RouteResult(
+                time: route.FindElement(RouteTimeSelector).Text.ToMinutes(),
+                distance: route.FindElement(RouteDistanceSelector).Text.ToMeters()))
             .ToList();
     }
 }

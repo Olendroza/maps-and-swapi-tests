@@ -3,10 +3,10 @@
     /// <summary>
     /// A TripResult contains required data about a given route.
     /// </summary>
-    public class TripResult
+    public class RouteResult
     {
         // I would use C# 9 records if they were available in .NET 4.7.2
-        public TripResult(int time, int distance)
+        public RouteResult(int time, int distance)
         {
             Time = time;
             Distance = distance;

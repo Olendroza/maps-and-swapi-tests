@@ -5,20 +5,28 @@ using System.Configuration;
 
 namespace AvanssurRecruitment.Infrastructure
 {
+    /// <summary>
+    /// Factory that provides with right WebDriver.
+    /// Edge and Chrome are supported since they are most popular web browsers on PC.
+    /// </summary>
     public static class DriverFactory
     {
         public static IWebDriver CreateWebDriver()
         {
-            if (ConfigurationManager.AppSettings.Get("driver") == "chrome")
-                return new ChromeDriver();
-            else
-            {
-                var options = new EdgeOptions
-                {
-                    UseChromium = true
-                };
 
-                return new EdgeDriver(options);
+            switch (ConfigurationManager.AppSettings.Get("driver"))
+            {
+                case "Chrome":
+                    return new ChromeDriver();
+                case "Edge":
+                    var options = new EdgeOptions
+                    {
+                        UseChromium = true
+                    };
+                    return new EdgeDriver(options);
+                default:
+                    throw new ConfigurationErrorsException
+                        ($"{ConfigurationManager.AppSettings.Get("driver")} is not valid driver option.");
             }
         }
     }

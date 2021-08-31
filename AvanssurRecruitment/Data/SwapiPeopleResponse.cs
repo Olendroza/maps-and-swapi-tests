@@ -2,8 +2,17 @@
 
 namespace AvanssurRecruitment.Data
 {
-    class SwapiPeopleResponse
+    /// <summary>
+    /// SwapiPeopleResponse represents a response while querying for people.
+    /// </summary>
+    public class SwapiPeopleResponse
     {
-        public List<SwapiPerson> Results { get; set; }
+        // I would use C# 9 records if they were available in .NET 4.7.2
+        public SwapiPeopleResponse(List<SwapiPerson> results)
+        {
+            Results = results;
+        }
+
+        public List<SwapiPerson> Results { get;}
     }
 }

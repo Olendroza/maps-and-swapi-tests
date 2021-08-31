@@ -18,18 +18,18 @@ namespace AvanssurRecruitment.Tests
         public readonly Repository<Planet> planetRepository;
         private readonly HttpClient httpClient;
 
-
         public SwapiPeopleTests(BackendFixture fixture)
         {
             peopleRepository = fixture.peopleRepository;
             planetRepository = fixture.planetRepository;
             httpClient = fixture.httpClient;
-
         }
 
         [Theory(DisplayName = "Person with known Id is from expected planet")]
         [InlineData(1, "Tatooine")]
-        public void WorkingAPI_QueryForPersonById_HomeworldCorrect(int id, string expectedHomeworldName)
+        //The test that use SWapi-CSharp library and assumes that id of Luke is known.
+        public void WorkingAPI_QueryForPersonById_HomeworldCorrect
+            (int id, string expectedHomeworldName)
         {
             var planetId = peopleRepository.GetById(id)
                .Homeworld.GetId();
@@ -41,7 +41,11 @@ namespace AvanssurRecruitment.Tests
 
         [Theory(DisplayName = "Person is from expected planet")]
         [InlineData("Luke Skywalker", "Tatooine")]
-        public void WorkingAPI_QueryPeopleForAllPeople_HomeworldCorrect(string name, string expectedHomeworldName)
+        //The test that use SWapi-CSharp library and assumes that only the name is known.
+        //This is not an optimal solution since we are querying for all People in the database,
+        //but the SWapi-CSharp does not provides a searcher.
+        public void WorkingAPI_QueryPeopleForAllPeople_HomeworldCorrect
+            (string name, string expectedHomeworldName)
         {
             var planetId = peopleRepository.GetEntities()
                 .Single(entry => entry.Name == name)
@@ -54,6 +58,7 @@ namespace AvanssurRecruitment.Tests
 
         [Theory(DisplayName = "Persons is from expected planet")]
         [InlineData("Luke Skywalker", "Tatooine")]
+        //Test with no external library
         public async Task WorkingApi_SearchingForPerson_HomeworldCorrect
             (string name, string expectedHomeworldName)
         {

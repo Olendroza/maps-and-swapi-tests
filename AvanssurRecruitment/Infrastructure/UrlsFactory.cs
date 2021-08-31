@@ -2,12 +2,16 @@
 
 namespace AvanssurRecruitment.Infrastructure
 {
+    /// <summary>
+    /// Factory that provides with correct links used for Swapi calls.
+    /// </summary>
     public class UrlsFactory
     {
         public UrlsFactory()
         {
             Url = Urls.SwapiBaseUrl;
         }
+
         private string Url;
 
         public UrlsFactory WithPeople()
