@@ -1,7 +1,7 @@
 ﻿namespace AvanssurRecruitment.Data
 {
     /// <summary>
-    /// A TripResult contains required data about a given trip.
+    /// A TripResult contains required data about a given route.
     /// </summary>
     public class TripResult
     {

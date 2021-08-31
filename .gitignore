@@ -401,3 +401,4 @@ obj/
 [Tt]est[Rr]esult*
 #Nuget packages folder
 packages/
+/.vscode/settings.json

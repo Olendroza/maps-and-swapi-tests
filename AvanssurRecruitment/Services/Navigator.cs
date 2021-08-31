@@ -1,11 +1,11 @@
-﻿using AvanssurRecruitment.PageObjects;
+﻿using AvanssurRecruitment.Data;
+using AvanssurRecruitment.PageObjects;
 using OpenQA.Selenium;
 
 namespace AvanssurRecruitment.Services
 {
     public class Navigator
     {
-        public const string googleMapsUrl = "https://www.google.pl/maps/";
         private readonly IWebDriver driver;
 
         public Navigator(IWebDriver driver)
@@ -15,7 +15,7 @@ namespace AvanssurRecruitment.Services
 
         public TermsAndConditionsPageObject NavigateToMaps()
         {
-            driver.Navigate().GoToUrl(googleMapsUrl);
+            driver.Navigate().GoToUrl(Urls.GoogleMapsUrl);
 
             return new TermsAndConditionsPageObject(driver);
         }
